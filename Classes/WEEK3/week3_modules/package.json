@@ -1,0 +1,20 @@
+{
+  "name": "week3_modules",
+  "version": "1.0.0",
+  "description": "Example about node modules",
+  "keywords": [
+    "nodejs",
+    "js",
+    "html",
+    "module",
+    "es6"
+  ],
+  "license": "ISC",
+  "author": "Jean Luc",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+}
