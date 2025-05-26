@@ -1,0 +1,23 @@
+{
+    "id": 1,
+    "name": "Jean Luc",
+    "username": "Mbuya",
+    "email": "sjlmbuya@myseneca.ca",
+    "address": {
+        "street": "Finsh",
+        "suite": "1720",
+        "city": "Toronto",
+        "zipcode": "92998-3874",
+        "geo": {
+            "lat": "-37.3159",
+            "lng": "81.1496"
+        }
+    },
+    "phone": "+1-437-898-0103",
+    "website": "hildegard.org",
+    "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+    }
+}
