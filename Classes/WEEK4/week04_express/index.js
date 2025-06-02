@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const SERVER_PORT = process.env.PORT || 8080; // assign a port
 
-http://localhost:8080/
+// http://localhost:8080/
 app.get('/', (req, res) => {
     res.send('HELLO, Node JS Express Server')
 })

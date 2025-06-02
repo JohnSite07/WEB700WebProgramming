@@ -70,19 +70,4 @@ class LegoData {
     }
 }
 
-// Asynchronous execution function
-async function run() {
-    let data = new LegoData();
-
-    await data.initialize(); // Ensures data is loaded before further operations
-    const allSets = await data.getAllSets(); // Retrieves all sets after initialization
-    console.log(`Number of Sets: ${allSets.length}`); // Logs total number of sets
-
-    const set = await data.getSetByNum("0012-1"); // Retrieves a specific set
-    console.log(set); // Logs set details
-
-    const setByTheme = await data.getSetsByTheme("tech"); // Filters sets by theme
-    console.log(`Number of 'tech' sets: ${setByTheme.length}`); // Logs filtered set count
-}
-
-run(); // Executes the program asynchronously
+module.exports = LegoData;
