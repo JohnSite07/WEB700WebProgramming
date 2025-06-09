@@ -3,7 +3,8 @@ const LegoData = require("./modules/legoSets");
 const legoData = new LegoData();
 const express = require('express');
 const app = express();
-const path = require('path')
+const path = require('path');
+const { rejects } = require("assert");
 
 const HTTP_PORT = process.env.PORT || 8080;
 
@@ -25,3 +26,23 @@ legoData.initialize()
     .catch((err) => {
         console.log(`Initialzation failed: ${err}`)
     })
+
+app.get("/lego/sets", (req, res) => {
+    if (req.query.theme) {
+        legoData.getSetsByTheme(req.query.theme)
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+        })
+    } else {
+        legoData.getAllSets()
+        .then(data => {
+            res.json(data);
+        })
+        .catch(err => {
+            res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+        });
+    }
+});
