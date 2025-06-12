@@ -9,8 +9,12 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname,"/views/index.html"));
 });
 
-app.get("/page2", (req, res) => {
-    res.sendFile(path.join(__dirname,"/views/page2.html"));
+app.get("/list", (req, res) => {
+    res.sendFile(path.join(__dirname,"/views/list.html"));
+});
+
+app.get("/order", (req,res) => {
+    res.sendFile(path.join(__dirname,"/views/order.html"));
 });
 
 // setup http server to listen on HTTP_PORT
