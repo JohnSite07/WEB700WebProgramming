@@ -3,6 +3,8 @@ const app = express();
 const HTTP_PORT = process.env.PORT || 3000;
 
 const path = require("path");
+app.use(express.static(__dirname + "/views"))
+app.use(express.static(__dirname + "/static"))
 
 // setup a 'route' to listen on the default url path
 app.get("/", (req, res) => {
@@ -15,6 +17,9 @@ app.get("/list", (req, res) => {
 
 app.get("/order", (req,res) => {
     res.sendFile(path.join(__dirname,"/views/order.html"));
+});
+app.get("/media", (req,res) => {
+    res.sendFile(path.join(__dirname,"/views/media.html"));
 });
 
 // setup http server to listen on HTTP_PORT

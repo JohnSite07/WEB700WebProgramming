@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title>
+</head>
+<body>
+    <h1>Image</h1>
+    <img src="bike.jpg" alt="Bike image" height="200" width="200"/>
+
+        <h1>Audio</h1>
+    <!-- Audio with controls showing, only MP3 source provided -->
+    <audio src="https://samplelib.com/lib/preview/mp3/sample-15s.mp3" controls></audio>
+    
+    <!-- Audio with controls showing, multiple formats available -->
+    <audio controls>
+        <source src="song.mp3" type="audio/mp3" />
+        <source src="song.ogg" type="audio/ogg" />
+        <p>
+            Sorry, your browser doesn't support HTML5 audio. Here is a
+            <a href="song.mp3">link to the audio</a> instead
+        </p>
+        .
+    </audio>
+
+    <h1>Video</h1>
+    <!-- External Video File, MP4 file format, show controls -->
+    <video src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" controls></video>
+    
+    <!-- Local video file in various formats, show with controls -->
+    <video width="320" height="240" controls>
+        <source src="video.mp4" type="video/mp4" />
+        <source src="video.webm" type="video/webm" />
+        <p>Sorry, your browser doesn't support HTML5 video</p>
+    </video>
+
+    <br/>
+    <nav>
+        <a href="/" target="_self"> Home</a>
+        <a href="/list" target="_self"> List</a>
+        <a href="/order" target="_self"> Order</a>
+        <a href="/media" target="_self"> Media</a>
+    </nav>
+    
+</body>
+</html>
