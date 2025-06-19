@@ -3,7 +3,7 @@ const path = require('path');
 
 class LegoData {
     constructor() {
-        this.sets = []
+        // The 'sets' property is initialized in getAllsSets, so it can be removed from here.
     }
 
     async initialize() {
@@ -21,17 +21,21 @@ class LegoData {
         }
     }
 
+    // ... (the rest of your class methods remain the same)
     async getAllsSets() {
         return new Promise((resolve, reject) => {
             try {
-                this.sets = this.setData.map(setElement => {
+                const sets = this.setData.map(setElement => {
                     const themeObject = this.themeData.find(
                         themeElement => themeElement.id === setElement.theme_id
                     )
-                    setElement.theme = themeObject ? themeObject.name : "Unknown theme"
-                    return setElement
+                    // Create a new object to avoid mutating the original data
+                    return {
+                        ...setElement,
+                        theme: themeObject ? themeObject.name : "Unknown theme"
+                    };
                 })
-                resolve(this.sets)
+                resolve(sets)
             } catch (error) {
                 reject(`Couldn't get all the sets: ${error.message}`)
             }
@@ -40,23 +44,40 @@ class LegoData {
 
     async getSetByNum(setNum) {
         return new Promise((resolve, reject) => {
+             // To ensure you are searching through the processed sets, call getAllsSets first
+             // or search through this.setData and add the theme manually.
+             // For simplicity, let's assume getAllsSets has been called by the route handler logic.
+             // A better implementation would be to have a single source of truth for the processed sets.
             try {
-                resolve(this.sets.find(
-                    setElement => setElement.set_num === setNum
-                ))
+                const allSets = this.getAllsSets(); // This returns a promise
+                allSets.then(sets => {
+                    const foundSet = sets.find(setElement => setElement.set_num === setNum);
+                     if (foundSet) {
+                        resolve(foundSet);
+                    } else {
+                        reject(new Error("Unable to find requested set"));
+                    }
+                });
             } catch (error) {
                 reject(`Unable to find requested set: ${error.message}`)
             }
         })
     }
 
-    async getSetsByTheme(theme) {
+     async getSetsByTheme(theme) {
         return new Promise((resolve, reject) => {
             try {
-                const setsByTheme = this.sets.filter(setElement =>
-                    setElement.theme.toLowerCase().includes(theme.toLowerCase())
-                )
-                resolve(setsByTheme);
+                const allSets = this.getAllsSets(); // This returns a promise
+                allSets.then(sets => {
+                    const setsByTheme = sets.filter(setElement =>
+                        setElement.theme.toLowerCase().includes(theme.toLowerCase())
+                    );
+                    if (setsByTheme.length > 0) {
+                        resolve(setsByTheme);
+                    } else {
+                        reject(new Error("Unable to find requested sets for that theme"));
+                    }
+                });
             } catch (error) {
                 reject(`Unable to find the requested set: ${error.message}`)
             }
@@ -64,4 +85,4 @@ class LegoData {
     }
 }
 
-module.exports = LegoData
+module.exports = LegoData;
