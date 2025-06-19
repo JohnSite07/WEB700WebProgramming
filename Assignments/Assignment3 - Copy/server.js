@@ -46,14 +46,14 @@ app.get("/lego/sets", (req, res) => {
 
 app.get('/lego/sets/:set_num', (req, res) => {
     legoData.getSetByNum(req.params.set_num)
-    .then(data => {
-        res.json(data)
-    })
-    .catch((err) => {
-        res.status(404).sendFile(path.join(__dirname, 'views/404.html'))
+        .then(data => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(404).sendFile(path.join(__dirname, 'views/404.html'))
     })
 })
 
 app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, '/views/404/html'))
+    res.status(404).sendFile(path.join(__dirname, '/views/404.html'))
 })
