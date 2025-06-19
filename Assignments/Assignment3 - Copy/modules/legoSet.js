@@ -1,18 +1,24 @@
+const fs = require('fs/promises');
+const path = require('path');
+
 class LegoData {
     constructor() {
         this.sets = []
     }
 
     async initialize() {
-        return new Promise((resolve, reject) => {
-            try {
-                this.setData = require("../data/setData.json")
-                this.themeData = require("../data/themeData.json")
-                resolve()
-            } catch (error) {
-                reject(`Failed initialization: ${error.message}`)
-            }
-        })
+        try {
+            // Construct absolute paths to the data files
+            const setDataPath = path.join(__dirname, '..', 'data', 'setData.json');
+            const themeDataPath = path.join(__dirname, '..', 'data', 'themeData.json');
+
+            // Read and parse the files
+            this.setData = JSON.parse(await fs.readFile(setDataPath, 'utf8'));
+            this.themeData = JSON.parse(await fs.readFile(themeDataPath, 'utf8'));
+        } catch (error) {
+            // The async function will automatically reject the promise on error
+            throw new Error(`Failed initialization: ${error.message}`);
+        }
     }
 
     async getAllsSets() {
