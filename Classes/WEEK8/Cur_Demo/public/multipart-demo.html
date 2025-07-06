@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multipart Form Data Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    nav { background: #333; padding: 1em; margin-bottom: 2em; border-radius: 8px; }
+    nav a { color: #fff; text-decoration: none; margin-right: 1.5em; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    form { max-width: 500px; margin: auto; padding: 2em; border: 1px solid #ccc; border-radius: 8px; }
+    .form-group { margin-bottom: 1.2em; }
+    label { display: block; margin-bottom: 0.3em; }
+    input[type="submit"], button[type="submit"] { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Forms Demo</a>
+    <a href="/url-encoded-demo">URL Encoded Demo</a>
+    <a href="/multipart-demo">Multipart Demo</a>
+  </nav>
+  <h1>Processing Multipart Form Data</h1>
+  <form method="post" action="/uploadEntry" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="fileDescription">File Description</label>
+      <input type="text" name="fileDescription" id="fileDescription" />
+    </div>
+
+    <div class="form-group">
+      <label for="avatar">Avatar Image</label>
+      <input type="file" name="avatar" id="avatar" />
+    </div>
+
+    <button type="submit">Upload Image</button>
+  </form>
+</body>
+</html> 

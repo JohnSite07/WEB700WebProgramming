@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Encoded Form Data Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    nav { background: #333; padding: 1em; margin-bottom: 2em; border-radius: 8px; }
+    nav a { color: #fff; text-decoration: none; margin-right: 1.5em; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    form { max-width: 500px; margin: auto; padding: 2em; border: 1px solid #ccc; border-radius: 8px; }
+    .form-group { margin-bottom: 1.2em; }
+    label { display: block; margin-bottom: 0.3em; }
+    input[type="submit"], button[type="submit"] { margin-top: 1em; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Forms Demo</a>
+    <a href="/url-encoded-demo">URL Encoded Demo</a>
+    <a href="/multipart-demo">Multipart Demo</a>
+  </nav>
+  <h1>Processing URL Encoded Form Data</h1>
+  <form method="post" action="/addEntry">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" name="fullName" id="fullName" />
+    </div>
+
+    <div class="form-group">
+      <label for="blogEntry">Blog Entry</label>
+      <textarea name="blogEntry" id="blogEntry"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="pet">Pet</label>
+      <select name="pet" id="pet">
+        <option value="">-- Please choose an option --</option>
+        <option value="dog">Dog</option>
+        <option value="cat">Cat</option>
+        <option value="hamster">Hamster</option>
+        <option value="parrot">Parrot</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="transportation">Transportation</label>
+      <select multiple name="transportation" id="transportation">
+        <option value="car">Car</option>
+        <option value="motorcycle">Motorcycle</option>
+        <option value="bus">Bus</option>
+        <option value="jet">Private Jet</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <span>Fast Food</span><br />
+      <label><input type="radio" name="fastFood" value="hamburger" /> Hamburger</label><br />
+      <label><input type="radio" name="fastFood" value="pizza" /> Pizza</label><br />
+      <label><input type="radio" name="fastFood" value="sandwich" /> Sandwich</label>
+    </div>
+
+    <div class="form-group">
+      <label><input type="checkbox" name="active" /> Active</label>
+    </div>
+
+    <input type="hidden" name="productID" value="193774" />
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html> 
