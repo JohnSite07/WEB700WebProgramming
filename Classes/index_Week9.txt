@@ -1,0 +1,30 @@
+app.get("/courses", (req, res) => {
+  const courseList = [
+    {
+      name: "Seneca College",
+      city: "Toronto",
+      course: "WEB700",
+      status: true
+    },
+    {
+      name: "Seneca College",
+      city: "Markham",
+      course: "WEB800",
+      status: false
+    },
+    {
+      name: "Seneca College",
+      city: "Toronto",
+      course: "BTT500",
+      status: true
+    },
+    {
+      name: "Centenial College",
+      city: "Scarborough",
+      course: "MAD2001",
+      status: true
+    }
+  ]
+
+  res.render('courses', { dataList: courseList})
+})

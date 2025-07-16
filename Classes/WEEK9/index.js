@@ -6,6 +6,10 @@ const SERVER_PORT = process.env.PORT || 3000
 
 app.set('view engine', 'ejs')
 
+app.get('/', (req, res) => {
+    res.send('<h1>Welcome to EJS Practice</h1><p><a href="/person">Person</a> | <a href="/viewData">View Data</a> | <a href="/college">College</a></p>')
+})
+
 app.get('/person', (req, res) => {
     const user = {
         firstname: "Jean Luc",
@@ -24,8 +28,20 @@ app.get('/viewData', function (req, res) {
     company: 'Scotiabank',
   };
 
-  res.render('viewData', { data: someData });
+  res.render('user', { data: someData });
 });
+
+
+app.get("/college", (req, res) => {
+  const college = {
+    name: "Seneca College",
+    city: "Toronto",
+    course: "WEB700",
+    status: true
+  }
+
+  res.render('college', { data: college})
+})
 
 app.listen(SERVER_PORT, () => {
     console.log('Server started...')

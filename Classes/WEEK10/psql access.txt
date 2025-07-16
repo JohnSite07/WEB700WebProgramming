@@ -1,0 +1,9 @@
+psql 'postgresql://neondb_owner:npg_kaHgF7Ghb5mA@ep-rough-firefly-aeyw1niu-pooler.c-2.us-east-2.aws.neon.tech/SenecaDB?sslmode=require&channel_binding=require'
+
+ep-rough-firefly-aeyw1niu-pooler.c-2.us-east-2.aws.neon.tech
+
+neondb_owner
+
+SenecaDB
+
+npg_kaHgF7Ghb5mA
