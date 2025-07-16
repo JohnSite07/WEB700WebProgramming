@@ -7,7 +7,9 @@
 * 
 * Name: Jean Luc Sita Mbuya Student ID: 111827242 Date: 7/16/2025
 *
-* Published URL: https://github.com/JohnSite07/WEB700WebProgramming/blob/main/Assignments/Assignment4/server.js
+* Published URLs: 
+    GitHub: https://github.com/JohnSite07/Assignment5_WEB_Program
+    Vercel: https://assignment5-web-program.vercel.app
 *
 ********************************************************************************/
 const { error } = require("console");
