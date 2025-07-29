@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function makeUserCall() {
+            const userDataDiv = document.getElementById("user-data");
+            userDataDiv.innerHTML = "Loading...";
+            const userTable = "<table border='1'><tr><th>User ID</th><th>Name</th><th>Email</th></tr>";
+            // Fetch user data from the API
+            fetch("https://jsonplaceholder.typicode.com/users", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            }).then(data => {
+                console.log("User data:", data);
+                // You can process the user data here
+                data.forEach(user => {
+                    userTable += `<tr><td>${user.id}</td><td>${user.name}</td><td>${user.email}</td></tr>`;
+                });
+            }).catch(error => {
+                console.error("There was a problem with the fetch operation:", error);
+            });
+        }
+        makeUserCall()
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <div id="user-data">
+        No Data
+    </div>
+    <button onclick="makeUserCall()">Fetch User Data</button>
+    <p>Click the button to fetch user data from the API.</p>
+    
+</body>
+</html>
