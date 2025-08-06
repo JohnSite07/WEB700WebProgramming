@@ -1,0 +1,116 @@
+/********************************************************************************
+* WEB700 – Assignment 06
+* 
+* I declare that this assignment is my own work in accordance with Seneca's
+* Academic Integrity Policy:
+* https://www.senecapolytechnic.ca/about/policies/academic-integrity-policy.html
+* 
+* Name: Jean Luc Sita Mbuya Student ID: 111827242 Date: 8/5/2025
+*
+* Published URLs: 
+    GitHub: https://github.com/JohnSite07/Assignment5_WEB_Program
+    Vercel: https://assignment5-web-program.vercel.app
+*
+********************************************************************************/
+require('dotenv').config();
+const { error } = require("console");
+const LegoData = require("./modules/legoSets");
+const legoData = new LegoData();
+const express = require('express');
+const app = express();
+const path = require('path');
+const { rejects } = require("assert");
+
+// Static middleware for serving public files
+app.use(express.static(__dirname + '/public'));
+
+const HTTP_PORT = process.env.PORT || 8080;
+
+// Assignment 5: Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+// Assignment 5: Add urlencoded middleware
+app.use(express.urlencoded({ extended: true }));
+
+// Update routes to use res.render instead of res.sendFile
+app.get('/', (req, res) => {
+    res.render('home');
+});
+
+app.get('/about', (req, res) => {
+    res.render('about');
+});
+
+app.get('/lego/addSet', (req, res) => {
+    legoData.getAllThemes()
+        .then(themes => {
+            res.render('addSet', { themes });
+        })
+        .catch(err => {
+            res.status(500).render('addSet', { themes: [] });
+        });
+});
+
+app.post('/lego/addSet', async (req, res) => {
+    try {
+        await legoData.addSet(req.body);
+        res.redirect('/lego/sets');
+    } catch (err) {
+        res.status(500).render('500', { message: err });
+    }
+});
+
+legoData.initialize()
+    .then(() => {
+        app.listen(HTTP_PORT, () => {
+        console.log("Server started...")
+        });
+    })
+    .catch((err) => {
+        console.log(`Initialzation failed: ${err}`);
+    });
+
+app.get("/lego/sets", (req, res) => {
+    if (req.query.theme) {
+        legoData.getSetsByTheme(req.query.theme)
+        .then(data => {
+            res.render('sets', { sets: data });
+        })
+        .catch(err => {
+            res.status(500).render('500', { message: err });
+        });
+    } else {
+        legoData.getAllSets()
+        .then(data => {
+            res.render('sets', { sets: data });
+        })
+        .catch(err => {
+            res.status(500).render('500', { message: err });
+        });
+    }
+});
+
+app.get('/lego/sets/:set_num', (req, res) => {
+    legoData.getSetByNum(req.params.set_num)
+        .then(data => {
+            res.render('set', { set: data });
+        })
+        .catch(err => {
+            res.status(404).render('404', { message: "I'm sorry, we're unable to find what you're looking for." });
+        });
+    });
+
+app.get('/lego/deleteSet/:set_num', async (req, res) => {
+    try {
+        await legoData.deleteSetByNum(req.params.set_num);
+        res.redirect('/lego/sets');
+    } catch (err) {
+        res.status(500).render('500', { message: err });
+    }
+});
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).render('404', { message: "I'm sorry, we're unable to find what you're looking for." });
+});

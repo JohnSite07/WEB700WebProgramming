@@ -1,0 +1,9 @@
+psql 'postgresql://neondb_owner:npg_kaHgF7Ghb5mA@ep-rough-firefly-aeyw1niu-pooler.c-2.us-east-2.aws.neon.tech/SenecaDB?sslmode=require&channel_binding=require'
+
+Hostname: ep-rough-firefly-aeyw1niu-pooler.c-2.us-east-2.aws.neon.tech
+
+Usr: neondb_owner
+
+Database name: SenecaDB
+
+Password: npg_kaHgF7Ghb5mA
